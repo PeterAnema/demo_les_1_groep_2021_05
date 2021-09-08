@@ -1,5 +1,6 @@
 package nl.peteranema.demo.controller;
 
+import nl.peteranema.demo.model.Persoon;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,7 +10,7 @@ import java.util.List;
 @RestController
 public class PersoonController {
 
-    private static List<String> personen = new ArrayList<>();
+    private static List<Persoon> personen = new ArrayList<>();
 
     @GetMapping(value = "/personen")
     public ResponseEntity getPersonen() {
@@ -22,7 +23,7 @@ public class PersoonController {
     }
 
     @PostMapping(value = "/personen")
-    public ResponseEntity addPersoon(@RequestBody String persoon) {
+    public ResponseEntity addPersoon(@RequestBody Persoon persoon) {
         personen.add(persoon);
         return ResponseEntity.ok("Toegevoegd");
     }
@@ -34,7 +35,7 @@ public class PersoonController {
     }
 
     @PutMapping(value = "/personen/{nr}")
-    public ResponseEntity updatePersoon(@PathVariable int nr, @RequestBody String persoon) {
+    public ResponseEntity updatePersoon(@PathVariable int nr, @RequestBody Persoon persoon) {
         personen.set(nr, persoon);
         return ResponseEntity.ok("Aangepast");
     }
