@@ -1,6 +1,5 @@
 package nl.peteranema.demo.controller;
 
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +25,18 @@ public class PersoonController {
     public ResponseEntity addPersoon(@RequestBody String persoon) {
         personen.add(persoon);
         return ResponseEntity.ok("Toegevoegd");
+    }
+
+    @DeleteMapping(value = "/personen/{nr}")
+    public ResponseEntity deletePersoon(@PathVariable int nr) {
+        personen.remove(nr);
+        return ResponseEntity.ok("Verwijderd");
+    }
+
+    @PutMapping(value = "/personen/{nr}")
+    public ResponseEntity updatePersoon(@PathVariable int nr, @RequestBody String persoon) {
+        personen.set(nr, persoon);
+        return ResponseEntity.ok("Aangepast");
     }
 
 }
