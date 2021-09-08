@@ -15,7 +15,7 @@ public class VragenController {
 
     private static String[] answers = {
             "In the Netherlands",
-            "In USA"
+            "In US of A"
     };
 
     @GetMapping(value = "/questions")       // collection

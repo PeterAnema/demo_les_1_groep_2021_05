@@ -24,7 +24,7 @@ public class BaseController {
 
     @GetMapping(value = "/info")
     public String info() {
-        return "This is my first great Webservice endpoint!!!";
+        return "This is my frist great Webservice endpoint!!!";
     }
 
 }
