@@ -2,7 +2,8 @@ package nl.peteranema.demo.model;
 
 import javax.persistence.*;
 
-@Entity(name = "personen")
+@Entity
+@Table(name = "personen")
 public class Persoon {
 
     @Id
