@@ -44,4 +44,9 @@ public class PersoonServiceImpl implements PersoonService {
             throw new RecordNotFoundException();
         }
     }
+
+    @Override
+    public Iterable<Persoon> findByLastname(String lastname) {
+        return persoonRepository.findByAchternaam(lastname);
+    }
 }

@@ -8,5 +8,6 @@ public interface PersoonService {
     public Persoon findById(long nr);
     void save(Persoon persoon);
     void deleteById(long nr);
+    Iterable<Persoon> findByLastname(String lastname);
 
 }
