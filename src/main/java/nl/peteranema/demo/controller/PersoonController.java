@@ -3,6 +3,7 @@ package nl.peteranema.demo.controller;
 import nl.peteranema.demo.exception.RecordNotFoundException;
 import nl.peteranema.demo.model.Persoon;
 import nl.peteranema.demo.repository.PersoonRepository;
+import nl.peteranema.demo.service.PersoonService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,35 +17,30 @@ import java.util.Optional;
 public class PersoonController {
 
     @Autowired
-    private PersoonRepository persoonRepository;
+    private PersoonService persoonService;
 
     @GetMapping(value = "/personen")
     public ResponseEntity getPersonen() {
-        Iterable<Persoon> personen = persoonRepository.findAll();
+        Iterable<Persoon> personen = persoonService.findAll();
+
         return ResponseEntity.ok(personen);
     }
 
     @GetMapping(value = "/personen/{nr}")
     public ResponseEntity getPersoon(@PathVariable long nr) {
-        try {
-            Optional<Persoon> persoon = persoonRepository.findById(nr);
-            return ResponseEntity.ok(persoon);
-        }
-        catch (IndexOutOfBoundsException ex) {
-            System.out.println(ex);
-            throw new RecordNotFoundException();
-        }
+        Persoon persoon = persoonService.findById(nr);
+        return ResponseEntity.ok(persoon);
     }
 
     @PostMapping(value = "/personen")
     public ResponseEntity addPersoon(@RequestBody Persoon persoon) {
-        persoonRepository.save(persoon);
+        persoonService.save(persoon);
         return ResponseEntity.ok("Toegevoegd");
     }
 
     @DeleteMapping(value = "/personen/{nr}")
     public ResponseEntity deletePersoon(@PathVariable long nr) {
-        persoonRepository.deleteById(nr);
+        persoonService.deleteById(nr);
         return ResponseEntity.ok("Verwijderd");
     }
 
