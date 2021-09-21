@@ -20,14 +20,9 @@ public class PersoonController {
     private PersoonService persoonService;
 
     @GetMapping(value = "/personen")
-    public ResponseEntity getPersonen(@RequestParam("achternaam") String achternaam) {
+    public ResponseEntity getPersonen() {
         Iterable<Persoon> personen;
-        if (achternaam.isEmpty()) {
-            personen = persoonService.findAll();
-        }
-        else {
-            personen = persoonService.findByLastname(achternaam);
-        }
+        personen = persoonService.findAll();
         return ResponseEntity.ok(personen);
     }
 
